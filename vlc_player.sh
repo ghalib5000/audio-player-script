@@ -1,5 +1,5 @@
 #!/bin/bash
-play_song()
+play()
 {
 read_locations "./music_location"
 find  $val2 | grep -i "${1// /.*}"> "/home/$USER/Documents/temp_file_for_audio"
@@ -36,9 +36,12 @@ show_list()
         #this is when there are more than one file
     elif [[ $nums -ge 2 ]]
     then
-        #myArray=("${(f@)mapfile[/home/$USER/Documents/temp_file_for_audio]}")
-        mapfile -t myArray < "/home/$USER/Documents/temp_file_for_audio"
-        
+         if [[ $SHELL == "/bin/zsh" ]]
+        then #zsh
+            myArray=("${(f@)mapfile[/home/$USER/Documents/temp_file_for_audio]}")
+        else #bash
+            mapfile -t myArray < "/home/$USER/Documents/temp_file_for_audio"
+        fi             
         if [[ $1 ]]
         then
             val="${myArray[$1 ]}";
