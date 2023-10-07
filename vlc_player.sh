@@ -5,6 +5,7 @@ read_locations "./music_location"
 find  $val2 | grep -i "${1// /.*}"> "/home/$USER/Documents/temp_file_for_audio"
 show_list $2
 }
+
 #for playlists
 playlist()
 {
